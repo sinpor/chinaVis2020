@@ -1,6 +1,6 @@
 ### chinaVis 2020 挑战赛
 
-- 仓库地址：
+- 仓库地址：[https://github.com/sinpor/chinaVis2020.git](https://github.com/sinpor/chinaVis2020.git)
 
 ### 前端部署
 
