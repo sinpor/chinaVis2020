@@ -2708,7 +2708,7 @@ antd@3.x:
     shallowequal "^1.1.0"
     warning "~4.0.3"
 
-antd@^4.0.0, antd@^4.0.0-alpha.9:
+antd@^4.0.0-alpha.9, antd@^4.2.0:
   version "4.2.0"
   resolved "https://registry.npm.taobao.org/antd/download/antd-4.2.0.tgz#1b6c9cb1d534b33e83a24052d9a7ccbaba19d138"
   integrity sha1-G2ycsdU0sz6DokBS2afMuroZ0Tg=
