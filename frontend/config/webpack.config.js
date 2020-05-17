@@ -486,30 +486,19 @@ module.exports = function(webpackEnv) {
                 'sass-loader'
               ),
             },
-            // 添加less
+            // 添加less, 开启cssModule
             {
               test: /\.less$/,
-              exclude: /\.module\.less$/,
-              use: getStyleLoaders(
-                  {
-                      importLoaders: 2,
-                      sourceMap: isEnvProduction && shouldUseSourceMap,
-                  },
-                  'less-loader'
-              ),
+              exclude: [/\.module\.less$/, /node_modules/],
+              use: getStyleLoaders({
+                importLoaders: 0,
+                sourceMap: isEnvProduction && shouldUseSourceMap,
+                modules: {
+                  localIdentName: "[hash:base64:8]__[local]",
+                },
+              },
+              'less-loader'),
               sideEffects: true,
-          },
-          {
-              test: /\.module\.less$/,
-              use: getStyleLoaders(
-                  {
-                      importLoaders: 2,
-                      sourceMap: isEnvProduction && shouldUseSourceMap,
-                      modules: true,
-                      getLocalIdent: getCSSModuleLocalIdent,
-                  },
-                  'less-loader'
-              )
           },
             // "file" loader makes sure those assets get served by WebpackDevServer.
             // When you `import` an asset, you get its (virtual) filename.
