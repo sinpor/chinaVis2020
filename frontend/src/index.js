@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import Router from './router';
-
-import './style/index.less';
+import 'antd/dist/antd.css'
 
 ReactDOM.render(
   <React.StrictMode>
