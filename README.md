@@ -19,7 +19,7 @@ yarn
 
 # 本地启动
 yarn start
-# http://localhost:3000(或其他端口，即使占用也无需配置)
+# http://localhost:3300(或其他端口，即使占用也无需配置)
 ```
 
 
