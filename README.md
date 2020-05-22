@@ -29,8 +29,9 @@ yarn start
 
 部署流程：
 ``` 安装python库版本说明 
-Django 2.0.6 django-cors-headers 
-2.2.0 django-rest-framework-mongoengine 3.4.0 
+Django 2.0.6 
+django-cors-headers 2.2.0 
+django-rest-framework-mongoengine 3.4.0 
 djangorestframework 3.10.3 
 pymongo 3.6.1 
 mongoengine 0.17.0 
