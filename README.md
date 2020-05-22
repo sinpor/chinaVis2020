@@ -23,7 +23,14 @@ yarn start
 ```
 ### 后端部署
 
-#### 必备软件：
+#### 1、文件夹说明
+```
+1、获得的数据存放到Data_CSV 
+2、mongodb_data是Mongodb数据库
+3、Django_backend为Danggo搭建的后台
+```
+#### 2、后台Django框架说明：
+必备软件：
 - mongodb v3.7.3 其他版本也行
 - python 3.0以上
 
@@ -36,11 +43,5 @@ djangorestframework 3.10.3
 pymongo 3.6.1 
 mongoengine 0.17.0 
 由于mongodb和Django框架的更新换代，不同版本的库可能出现不适配的问题。 为确保程序正常运行请按上述版本进行安装
-```
-#### 文件夹说明
-```
-1、获得的数据存放到Data_CSV 
-2、mongodb_data是Mongodb数据库
-3、Django_backend为Danggo搭建的后台
 ```
 
