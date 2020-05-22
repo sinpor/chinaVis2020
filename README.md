@@ -28,6 +28,7 @@ yarn start
 1、获得的数据存放到Data_CSV 
 2、mongodb_data是Mongodb数据库
 3、Django_backend为Danggo搭建的后台
+4、Crawler为爬虫code
 ```
 #### 2、后台Django框架说明：
 必备软件：
