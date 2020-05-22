@@ -35,7 +35,8 @@ yarn start
 - python 3.0以上
 
 部署流程：
-``` 安装python库版本说明 
+``` 下载完成后按以下版本安装python库
+命令：例如 pip install Django==2.0.6
 Django 2.0.6 
 django-cors-headers 2.2.0 
 django-rest-framework-mongoengine 3.4.0 
