@@ -48,18 +48,18 @@ yarn start
 由于mongodb和Django框架的更新换代，不同版本的库可能出现不适配的问题。 为确保程序正常运行请按上述版本进行安装
 ```
 ### 服务器部署
-#### API接口：
+#### API文档：
 	（1）接口名称：
-			illnessNum
-		 接口定义：
+		illnessNum
+	     接口定义：
 	        每日各省市新增、治愈、死亡人数
-		 接口地址：
-			http://chinavis2020.cvnis.net:8000/CV2020/illnessNum(或http://112.74.89.57:8000/CV2020/illnessNum)
+	     接口地址：
+	        http://chinavis2020.cvnis.net:8000/CV2020/illnessNum(或http://112.74.89.57:8000/CV2020/illnessNum)
 	（2）接口名称：
-			.....
-		 接口定义：
-			.....
-		 接口地址：
+	        .....
+	     接口定义：
+	        .....
+	     接口地址：
 #### 服务器命令
 ```
 后台启动mongodb:
