@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { getFomatTime } from '@/utils';
+import style from './index.less'
 
 export default function Clock() {
     const [time, setTime] = useState(getFomatTime());
@@ -11,6 +12,6 @@ export default function Clock() {
         update();
     }, [])
     return (
-        <div>{time}</div>
+        <div className={style.clock}>{time}</div>
     )
 }
