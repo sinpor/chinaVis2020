@@ -28,7 +28,7 @@ export default function BasicLayout({children}) {
                         </div>
                     </Header>
                     <BorderBox1>
-                        <Content>
+                        <Content className="layout-content">
                             {children}
                         </Content>
                     </BorderBox1>
