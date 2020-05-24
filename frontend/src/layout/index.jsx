@@ -27,7 +27,7 @@ export default function BasicLayout({children}) {
                             </span></BorderBox7></span>
                         </div>
                     </Header>
-                    <BorderBox1>
+                    <BorderBox1 className="border-padding-3">
                         <Content className="layout-content">
                             {children}
                         </Content>
