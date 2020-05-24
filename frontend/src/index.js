@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import Router from './router';
 import 'antd/dist/antd.css'
+import './style/index.less'
 
 ReactDOM.render(
   <React.StrictMode>
