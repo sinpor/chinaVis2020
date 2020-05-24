@@ -50,16 +50,21 @@ yarn start
 ### 服务器部署
 #### API文档：
 	（1）接口名称：
-		illnessNum
+		ProvinceData
+	     请求类型：
+	        get型
 	     接口定义：
-	        每日各省市新增、治愈、死亡人数
+	        每日各省province_confirmedCount(确诊)、province_suspectedCount（疑似病例）、province_curedCount（治愈）、province_deadCount（死亡）
 	     接口地址：
-	        http://chinavis2020.cvnis.net:8000/CV2020/illnessNum(或http://112.74.89.57:8000/CV2020/illnessNum)
+	        http://chinavis2020.cvnis.net:8000/ProvinceData
 	（2）接口名称：
-	        .....
+	        CityData
+	     请求类型：
+	        post  ["大连","2020-04-18"]
 	     接口定义：
-	        .....
+	        市区的city_confirmedCount(确诊)、city_suspectedCount（疑似病例）、city_curedCount（治愈）、city_deadCount（死亡）
 	     接口地址：
+	        http://chinavis2020.cvnis.net:8000/CityData
 #### 服务器命令
 ```
 后台启动mongodb:
