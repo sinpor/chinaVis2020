@@ -71,7 +71,7 @@ yarn start
 	mongod -dbpath /mnt/ChinaVIS2020_Challenge/Mongo_data/ -logpath /mnt/ChinaVIS2020_Challenge/Mongo_data/logs/mongo.log -logappend -fork -port 27017
 后台启动Django框架：
 	cd /mnt/ChinaVIS2020_Challenge/Django_backend/ #进入Django后台目录
-	nohup python3 manage.py runserver &   #后台启动Django服务
+	nohup python3 manage.py runserver 0.0.0.0:8000 &    #后台启动Django服务
 查看端口服务是否打开：
 	netstat -tunlp | grep 27017 #本地mongo数据库
 	netstat -tunlp | grep 8000 #Django后台端口
