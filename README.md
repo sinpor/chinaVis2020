@@ -54,6 +54,7 @@ yarn start
 	     请求类型：
 	        get型
 	     接口定义：
+	        到当日为止各省累计确诊、疑似、治愈、死亡人数
 	        每日各省province_confirmedCount(确诊)、province_suspectedCount（疑似病例）、province_curedCount（治愈）、province_deadCount（死亡）
 	     接口地址：
 	        http://chinavis2020.cvnis.net:8000/ProvinceData
@@ -62,6 +63,7 @@ yarn start
 	     请求类型：
 	        post  ["大连","2020-04-18"]
 	     接口定义：
+	     	到当日为止各市区累计确诊、疑似、治愈、死亡人数
 	        市区的city_confirmedCount(确诊)、city_suspectedCount（疑似病例）、city_curedCount（治愈）、city_deadCount（死亡）
 	     接口地址：
 	        http://chinavis2020.cvnis.net:8000/CityData
