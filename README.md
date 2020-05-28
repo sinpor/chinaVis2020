@@ -68,15 +68,20 @@ yarn start
 	        市区的city_confirmedCount(确诊)、city_suspectedCount（疑似病例）、city_curedCount（治愈）、city_deadCount（死亡）
 	     接口地址：
 	        http://chinavis2020.cvnis.net:8000/CityData
-#### 未封装API的数据的说明
-	(1)CityDataDaily2.csv
-	     2020-01-25到2020-05-25全国各市区（精确到区）每日新增确诊人数city_confirmedCount、新增疑似人数city_suspectedCount、新增治愈人数city_curedCount、新增死亡人数city_deadCount
-	（2）CityName.csv
+#### 未做接口的数据的说明
+	(1)CityDataDaily.csv/json
+	     2020-01-23到2020-05-24全国各市区（精确到区）每日新增确诊人数city_confirmedCount、新增疑似人数city_suspectedCount、新增治愈人数city_curedCount、新增死亡人数city_deadCount
+	(2)CityName.csv
 	     用于对照查找（1）中市区名称
-	（3）ProvinceDataDaily2.csv
-	     2020-01-25到2020-05-25全国各省（精确到省）每日新增确诊人数province_confirmedCount、新增疑似人数province_suspectedCount、新增治愈人数province_curedCount、新增死亡人数province_deadCount
-	（4）ProvinceName.csv
+	(3)ProvinceDataDaily.csv/json
+	     2020-01-23到2020-05-24全国各省（精确到省）每日新增确诊人数province_confirmedCount、新增疑似人数province_suspectedCount、新增治愈人数province_curedCount、新增死亡人数province_deadCount
+	(4)ProvinceName.csv
 	     用于对照查找（3）中省的名称
+	(5)weiboHotTop10.csv/json
+	     微博热搜数据，从1月18日到5月26日的微博热额top10数据（按搜索数量排名）
+	(6)CountTopicNum.csv/json
+	     从1月17日到3月31日微博所有以2019-ncov、covid-19、新冠、新冠肺炎、新型冠状病毒、疫情为主题的话题数量统计。
+	     
 #### 服务器命令
 ```
 后台启动mongodb:
