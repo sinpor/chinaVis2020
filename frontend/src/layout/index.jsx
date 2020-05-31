@@ -23,12 +23,12 @@ export default function BasicLayout({children}) {
                                 <Link to='/option' >舆情信息</Link>
                             </span></BorderBox7></span>
                             <span><BorderBox7><span className="menu-item">
-                                menu1
+                                <Link to='/analysis' >疫情分析</Link>
                             </span></BorderBox7></span>
                         </div>
                     </Header>
                     <BorderBox1>
-                        <Content>
+                        <Content className="layout-content">
                             {children}
                         </Content>
                     </BorderBox1>
