@@ -1,5 +1,6 @@
 import React from 'react'
-import { ScrollBoard, BorderBox9 } from '@jiaminghi/data-view-react'
+import { ScrollBoard } from '@jiaminghi/data-view-react'
+import Section from '@/components/section'
 
 const config = {
     header: new Array(4).fill('column'),
@@ -14,9 +15,9 @@ const config = {
 
 export default function index() {
     return (
-        <BorderBox9 className="border-padding-1">
+        <Section title="舆论列表">
             <ScrollBoard config={config} />
-        </BorderBox9>
+        </Section>
     )
 }
 
