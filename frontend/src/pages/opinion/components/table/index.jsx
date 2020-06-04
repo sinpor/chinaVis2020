@@ -1,22 +1,85 @@
-import React from 'react'
-import { ScrollBoard } from '@jiaminghi/data-view-react'
+import React, { useState, useEffect } from 'react'
 import Section from '@/components/section'
+import { Table, Select } from 'antd'
+import axios from '@/services'
+import moment from 'moment'
 
-const config = {
-    header: new Array(4).fill('column'),
-    data: [
-        ['行1列1', '行1列2', '行1列3'],
-        ['行2列1', '行2列2', '行2列3'],
-        ['行3列1', '行3列2', '行3列3'],
-        ['行4列1', '行4列2', '行4列3'],
-        ['行5列1', '行5列2', '行5列3'],
-    ]
-}
+const columns = [{
+    title: "排名",
+    dataIndex: "Rank",
+    width: '60px'
+},
+{
+    title: "内容",
+    dataIndex: "Content",
+},
+{
+    title: "搜索次数",
+    dataIndex: "SearchNum",
+    width: "90px"
+},
+]
+export default function Index() {
+    const [tableData, setTableData] = useState({})
 
-export default function index() {
+    const [options, setOptions] = useState([])
+
+    const [currentDate, setCurrentDate] = useState(moment().format('YYYY-MM-DD'))
+    useEffect(() => {
+        function initData() {
+            axios('weiboHotTop10.json').then(res => {
+                const data = res.map(d => ({
+                    ...d,
+                    SearchNum: Number(d.SearchNum),
+                }))
+                .reduce((obj, d) => {
+                    const key = d.Date
+                    if (!obj[key]) {
+                        obj[key] = []
+                    }
+                    obj[key].push(d)
+                    return obj
+                }, {})
+
+                const dates = Object.keys(data)
+                    .sort((a, b) => moment(a) - moment(b))
+
+                setTableData(data)
+                setOptions(dates)
+                setCurrentDate(dates[0])
+            })
+        }
+        
+        initData()
+    }, [])
+
+    function handleChangeDate(d) {
+        setCurrentDate(d)
+    }
+
+    const selectOptions = options.map(d => ({
+        label: d,
+        value: d,
+    }))
+    
     return (
-        <Section title="舆论列表">
-            <ScrollBoard config={config} />
+        <Section title="热点话题">
+            <Table
+                title={() => (
+                    <div>
+                        <Select
+                            value={currentDate}
+                            options={selectOptions}
+                            dropdownStyle={{height: '200px'}}
+                            onChange={handleChangeDate}
+                        />
+                    </div>
+                )}
+                rowKey='Rank'
+                columns={columns}
+                dataSource={tableData[currentDate] || []}
+                scroll={{ y: 150 }}
+            />
         </Section>
     )
 }
