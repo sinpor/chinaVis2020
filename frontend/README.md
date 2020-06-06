@@ -54,5 +54,17 @@ yarn build
 
 `d3`
 
+### 样式文件
+
+`.less`会被`cssModule`转换，需要全局引用的的类需要包裹`:global`
+
+``` less
+:global {
+    .classname1 {
+        // ...
+    }
+}
+```
+
 > 需要其他库使用`yarn add xx`安装即可
 

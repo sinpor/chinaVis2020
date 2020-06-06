@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import echarts from 'echarts'
 import { BorderBox9 } from '@jiaminghi/data-view-react'
+import Section from '@/components/section'
 
 const option = {
     radar: {
@@ -55,10 +56,10 @@ export default function Radar() {
         }
     }, [])
     return (
-        <BorderBox9 className="border-padding-1">
+        <Section title="舆论列表">
             <div className="chart-container"
                 ref={container}
             />
-        </BorderBox9>
+        </Section>
     )
 }
