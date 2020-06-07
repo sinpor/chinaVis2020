@@ -1,5 +1,7 @@
 @import '../style/variable.less';
 
+@header-height: 100px;
+
 .layout {
     background-color:transparent !important;
     padding: 0;
@@ -13,7 +15,7 @@
             background: none;
             color: inherit;
             line-height: normal;
-            height: 100px;
+            height: @header-height;
             &>div {
                 width: 33%;
             }            
@@ -46,8 +48,11 @@
                 }
             }
         }
-        .layout-content{
-            height: 100%;
+        .layout-border {
+            height: calc(100% - @header-height);
+            .layout-content{
+                height: 100%;
+            }
         }
     }
 }
