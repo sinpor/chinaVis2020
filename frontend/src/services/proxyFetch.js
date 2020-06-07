@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const instance = axios.create({
     timeout: 30000,
-    baseURL: '/pd/'
+    baseURL: window.globalConfig.baseUrl,
 });
 
 instance.interceptors.response.use(response => {
