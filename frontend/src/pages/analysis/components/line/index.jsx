@@ -4,6 +4,7 @@ import 'echarts/map/js/china'
 import { DatePicker, Select } from 'antd'
 import style from './index.less'
 import moment from "moment";
+const provinceName = ["北京市", "天津市", "河北省", "山西省", "内蒙古自治区", "辽宁省", "吉林省", "黑龙江省", "上海市", "江苏省", "浙江省", "安徽省", "福建省", "江西省", "山东省", "河南省", "湖南省", "广东省", "广西自治区", "海南省", "重庆市", "四川省", "贵州省", "云南省", "西藏自治区", "陕西省", "甘肃省", "青海省", "宁夏自治区", "新疆自治区", "台湾省", "香港特别行政区", "澳门特别行政区"];
 
 
 export default function Radar() {
@@ -22,7 +23,7 @@ export default function Radar() {
             trigger: 'axis'
         },
         legend: {
-            data: ['直接访问', '搜索引擎'],
+            data: ['迁入比例', '确诊比例'],
             textStyle: {
                 color: '#fff'
             }
@@ -36,7 +37,7 @@ export default function Radar() {
         xAxis: {
             type: 'category',
             boundaryGap: false,
-            data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+            data: provinceName,
             axisLabel: {
                 color: '#fff'
             },
@@ -66,15 +67,15 @@ export default function Radar() {
         },
         series: [
             {
-                name: '直接访问',
+                name: '迁入比例',
                 type: 'line',
-                stack: '总量',
+                stack: '比率',
                 data: [320, 332, 301, 334, 390, 330, 320]
             },
             {
-                name: '搜索引擎',
+                name: '确诊比例',
                 type: 'line',
-                stack: '总量',
+                stack: '比率',
                 data: [820, 932, 901, 934, 1290, 1330, 1320]
             }
         ]
