@@ -2,6 +2,7 @@
 
 .map {
     :global {
+        position:relative;
         .switch-btn{
             display: flex;
             span{
@@ -15,6 +16,13 @@
                     color: @activeColor;
                 }
             }
+        }
+        .dateSelect{
+            position: absolute;
+            right: 25px;
+            top: 0;
+            z-index: 99;
+
         }
     }
 }
