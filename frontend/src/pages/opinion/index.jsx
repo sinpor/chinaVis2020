@@ -3,14 +3,20 @@ import { Row, Col } from 'antd'
 import Table from './components/table'
 import Radar from './components/radar'
 import WordCloud from './components/wordCloud'
+import NewNCount from './components/newNCount'
 
 export default function Opinion() {
     return (
-        <Row gutter={16}>
+        <Row gutter={16}
+            style={{height: '50%'}}
+        >
             <Col span={8}>
                 <Table />
             </Col>
-            <Col span={8} style={{height: '300px'}}>
+            <Col span={8} >
+                <NewNCount />
+            </Col>
+            <Col span={8}>
                 <Radar />
             </Col>
             <Col span={8}>
