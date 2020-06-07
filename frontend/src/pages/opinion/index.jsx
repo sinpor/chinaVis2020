@@ -4,11 +4,12 @@ import Table from './components/table'
 import Radar from './components/radar'
 import WordCloud from './components/wordCloud'
 import NewNCount from './components/newNCount'
+import style from './index.less'
 
 export default function Opinion() {
     return (
         <Row gutter={16}
-            style={{height: '50%'}}
+            className={style.options}
         >
             <Col span={8}>
                 <Table />
