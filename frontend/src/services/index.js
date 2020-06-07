@@ -1,4 +1,7 @@
 import axios from './axios';
+import proxyAxios from './proxyFetch'
 
-export default axios;
+export default { axios, proxyAxios };
 
+export { axios }
+export { proxyAxios }
