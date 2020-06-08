@@ -34,6 +34,9 @@ export default {
 
 <style lang="less" scoped>
   @import url(./assets/style/variable.less);
+  #app {
+    height: 100vh;
+  }
   .container {
     height: 100%;
   }
