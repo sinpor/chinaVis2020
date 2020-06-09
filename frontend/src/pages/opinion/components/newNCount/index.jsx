@@ -4,6 +4,7 @@ import Section from '@/components/section';
 import { proxyAxios, axios } from '@/services';
 import _ from 'lodash'
 import moment from 'moment'
+import { formatDate } from '@/utils';
 
 
 const option = {
@@ -35,7 +36,7 @@ const option = {
     series: [{
         name: '新增病例',
         id: 'new',
-        type: 'bar',
+        type: 'line',
         showSymbol: false,
         tooltip: {
         }
@@ -63,45 +64,53 @@ export default function Index() {
         }
 
         function getData() {
-            proxyAxios('ProvinceData').then(res => {
-                const newData = _.chain(res)
-                    .map(d => _.forEach(d, (d1, k, o) => {
-                            o[k] = isNaN(+d1) ? d1 : Number(d1)
-                        })
-                    )
-                    .reduce((obj, d) => {
-                        const key = d.updateTime
-                        if (!obj[key]) {
-                            obj[key] = {
-                                data: [],
-                                updateTime: d.updateTime,
-                                timeStamp: moment(d.updateTime).valueOf(),
-                            }
-                        }
-                        obj[key].data.push(d)
-                        return obj
-                    }, {})
-                    .values()
-                    .forEach((d, ind, arr) => {
-                        const { data } = d
-                        d.province_confirmedCount = _.sumBy(data, 'province_confirmedCount')
-                        d.province_curedCount = _.sumBy(data, 'province_curedCount')
-                        d.province_deadCount = _.sumBy(data, 'province_deadCount')
-                        d.province_suspectedCount = _.sumBy(data, 'province_suspectedCount')
-                        d.exist = d.province_confirmedCount
-                            - d.province_curedCount - d.province_deadCount
-                        d.newCount = d.exist - (ind ? arr[ind - 1].exist : 0)
-                    })
-                    .orderBy('timeStamp')
-                    .map(d => [d.updateTime, d.newCount])
-                    .value()
+            // proxyAxios('ProvinceData').then(res => {
+            //     const newData = _.chain(res)
+            //         .map(d => _.forEach(d, (d1, k, o) => {
+            //                 o[k] = isNaN(+d1) ? d1 : Number(d1)
+            //             })
+            //         )
+            //         .reduce((obj, d) => {
+            //             const key = d.updateTime
+            //             if (!obj[key]) {
+            //                 obj[key] = {
+            //                     data: [],
+            //                     updateTime: d.updateTime,
+            //                     timeStamp: moment(d.updateTime).valueOf(),
+            //                 }
+            //             }
+            //             obj[key].data.push(d)
+            //             return obj
+            //         }, {})
+            //         .values()
+            //         .forEach((d, ind, arr) => {
+            //             const { data } = d
+            //             d.province_confirmedCount = _.sumBy(data, 'province_confirmedCount')
+            //             d.province_curedCount = _.sumBy(data, 'province_curedCount')
+            //             d.province_deadCount = _.sumBy(data, 'province_deadCount')
+            //             d.province_suspectedCount = _.sumBy(data, 'province_suspectedCount')
+            //             d.exist = d.province_confirmedCount
+            //                 - d.province_curedCount - d.province_deadCount
+            //             d.newCount = d.exist - (ind ? arr[ind - 1].exist : 0)
+            //         })
+            //         .orderBy('timeStamp')
+            //         .map(d => [d.updateTime, d.newCount])
+            //         .value()
 
-                    chart.current.setOption({
-                        series: {
-                            id: 'new',
-                            data: newData,
-                        }
-                    })
+            //         chart.current.setOption({
+            //             series: {
+            //                 id: 'new',
+            //                 data: newData,
+            //             }
+            //         })
+            // })
+            axios('CountryDailyCount.json').then(res => {
+                chart.current.setOption({
+                    series: {
+                        id: 'new',
+                        data: res.map(d => [formatDate(d.updateTime), d.confirmedCount]),
+                    }
+                })
             })
             axios('CountTopicNum.json').then(res => {
                 const optionData = _.chain(res)
