@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Section from '@/components/section'
 import { Table, Select } from 'antd'
-import axios from '@/services'
+import { axios } from '@/services'
 import moment from 'moment'
 
 const columns = [{
