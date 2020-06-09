@@ -4,10 +4,12 @@ import Section from '@/components/section';
 import { proxyAxios, axios } from '@/services';
 import _ from 'lodash'
 import moment from 'moment'
+import { formatDate } from '@/utils';
 
 
 const option = {
     backgroundColor: 'transparent',
+    legend: {},
     tooltip: {
         trigger: 'axis',
     },
@@ -18,11 +20,9 @@ const option = {
     yAxis: [{
         splitLine: {show: false},
         name: '',
-        min: -5000,
     }, {
         splitLine: {show: false},
         name: '',
-        min: -5000,
 
     }],
     grid: [{
@@ -34,12 +34,25 @@ const option = {
     }],
     series: [{
         name: '',
-        id: '1',
+        id: 'positive',
         type: 'bar',
         showSymbol: false,
-    }, {
+    },
+    {
         name: '',
-        id: '2',
+        id: 'neural',
+        type: 'bar',
+        showSymbol: false,
+    },
+    {
+        name: '',
+        id: 'negative',
+        type: 'bar',
+        showSymbol: false,
+    },
+    {
+        name: '',
+        id: 'new',
         type: 'line',
         showSymbol: false,
         xAxisIndex: 0,
@@ -53,15 +66,41 @@ export default function Index() {
     const chart = useRef(null)
     
     useEffect(() => {
+        function initData() {
+            axios('EmotionNum.json').then(res => {
+                function getEmotionData(type) {
+                    return res.map(d => [formatDate(d.date), d[type]])
+                }
+                chart.current.setOption({
+                    series: [{
+                        id: 'positive',
+                        data: getEmotionData('positiveNum'),
+                    },{
+                        id: 'neural',
+                        data: getEmotionData('neuralNum'),
+                    }, {
+                        id: 'negative',
+                        data: getEmotionData('negativeNum'),
+                    }]
+                })
+            })
+
+            axios('CountryDailyCount.json').then(res => {
+                chart.current.setOption({
+                    series: {
+                        id: 'new',
+                        data: res.map(d => [formatDate(d.updateTime), d.confirmedCount])
+                    }
+                })
+            })
+        }
         function initChart() {
             chart.current = echarts.init(container.current, 'dark');
             chart.current.setOption(option)
         }
 
-        function getData() {
-            
-        }
         initChart()
+        initData()
     }, [])
 
     return (
