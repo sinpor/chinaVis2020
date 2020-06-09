@@ -99,7 +99,7 @@ export default function Radar() {
                     }
                 })
             }else{
-                const arr = res.filter(item=>item.provinceName === currentMap && item.updateTime === currentDate);
+                const arr = res.filter(item=>item.provinceName.indexOf(currentMap) !== -1 && item.updateTime === currentDate);
                 arr.map(item => {
                     let obj = {};
                     if (currentBtn === 'confirmed') {
