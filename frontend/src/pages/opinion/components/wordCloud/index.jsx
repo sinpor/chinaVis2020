@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import echarts from 'echarts'
 import 'echarts-wordcloud'
-import { BorderBox9 } from '@jiaminghi/data-view-react';
+import Section from '@/components/section';
 
 const option = {
     series: {
@@ -53,10 +53,10 @@ export default function WordCloud() {
         }
     }, [])
     return (
-        <BorderBox9 className="border-padding-1">
+        <Section title="谣言词云">
             <div className="chart-container"
                 ref={container}
             />
-        </BorderBox9>
+        </Section>
     )
 }

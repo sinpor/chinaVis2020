@@ -23,7 +23,7 @@ export default function Opinion() {
                 <WeiboTrend />
             </Col>
             <Col span={8}>
-                <Radar />
+                <WordCloud />
             </Col>
             <Col span={16}>
                 <Rumors />
