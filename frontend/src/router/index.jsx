@@ -5,16 +5,19 @@ import Layout from '../layout'
 import Opinion from '@/pages/opinion'
 import Analysis from '@/pages/analysis'
 import Network from '@/pages/network'
+import opinionAnly from '@/pages/opinionAnly'
 
 export default function Router() {
     return (
         <ReactRouter history={history}>
             <Layout>
                 <Switch>
-                    <Route path="/option" component={Opinion} />
                     <Route path="/analysis" component={Analysis} />
                     <Route path="/network" component={Network} />
                     <Redirect from="/" to="/option" />
+                    <Route path="/option" component={Opinion} />
+                    <Route path="/optionAnly" component={opinionAnly} />
+                    <Redirect from="/" to="/analysis" />
                 </Switch>
             </Layout>
         </ReactRouter>
