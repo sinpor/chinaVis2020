@@ -25,6 +25,9 @@ export default function BasicLayout({children}) {
                             <span><BorderBox7><span className="menu-item">
                                 <Link to='/analysis' >疫情分析</Link>
                             </span></BorderBox7></span>
+                            <span><BorderBox7><span className="menu-item">
+                                <Link to='/network' >社交网络</Link>
+                            </span></BorderBox7></span>
                         </div>
                     </Header>
                     <BorderBox1 className="border-padding-3 layout-border">
