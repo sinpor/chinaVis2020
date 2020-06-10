@@ -14,7 +14,6 @@ export default function Router() {
                 <Switch>
                     <Route path="/analysis" component={Analysis} />
                     <Route path="/network" component={Network} />
-                    <Redirect from="/" to="/option" />
                     <Route path="/option" component={Opinion} />
                     <Route path="/optionAnly" component={opinionAnly} />
                     <Redirect from="/" to="/analysis" />
