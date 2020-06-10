@@ -19,11 +19,15 @@ export default function BasicLayout({children}) {
                             <Decoration5 className="title-decorate" />
                         </div>
                         <div className="layout-header-menu">
+                            
+                            <span><BorderBox7><span className="menu-item">
+                                <Link to='/analysis' >疫情分析</Link>
+                            </span></BorderBox7></span>
                             <span><BorderBox7><span className="menu-item">
                                 <Link to='/option' >舆情信息</Link>
                             </span></BorderBox7></span>
                             <span><BorderBox7><span className="menu-item">
-                                <Link to='/analysis' >疫情分析</Link>
+                                <Link to='/optionAnly' >舆情情感</Link>
                             </span></BorderBox7></span>
                         </div>
                     </Header>
