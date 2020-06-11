@@ -42,7 +42,7 @@ const option = {
         show: false,
     },
     calendar: {
-        top: 'middle',
+        bottom: 5,
         left: 'center',
         orient: 'vertical',
         cellSize,
