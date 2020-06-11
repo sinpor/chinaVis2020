@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react'
 import echarts from "echarts";
 import axios from '@/services';
 import 'echarts-gl'
+import store from '../../store'
 
 const option_echartsnetwork = {
     "animation": true,
@@ -143,9 +144,16 @@ export default function Index() {
                 })
             })
         }
+        function handleClick() {
+            chart.current.on('click', ({ name, componentSubType}) => {
+                if (!componentSubType === "line3D") return
+                store.updateContent(name)
+                
+            })
+        }
         chart.current = echarts.init(container.current, 'light')
-        // chart.current.setOption(option_echartsnetwork)
         getSeries()
+        handleClick()
     }, [])
 
     return (

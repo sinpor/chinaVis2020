@@ -4,11 +4,36 @@
     height: 100%;
     :global {
         .network-info {
-            width: 20%;
+            width: 30%;
+            height: 100%;
+            .content {
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+                .content-form {
+                    margin: 10px 0;
+                    text-align: center;
+                }
+                .content-item {
+                    display: flex;
+                    .content-item-type {
+                        width: 5em;
+                        font-weight: bold;
+                    }
+                    .content-item-type {
+                        flex: 1;
+                        word-break: break-all;
+                    }
+                }
+            }
+            .wordCloud {
+                height: 50%;
+            }
         }
         .network-chart {
             flex: 1;
             height: 100%;
         }
+        
     }
 }
