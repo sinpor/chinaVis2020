@@ -1,5 +1,7 @@
 ## 前端开发文档
 
+> 务必将目录切换到`frontend/`
+
 ### scripts
 
 ``` shell
