@@ -1,9 +1,38 @@
-.options {
+.opinion {
     height: 100%;
     background-color: transparent;
+    display: flex;
+    &>div {
+        height: 100%;
+    }
     :global {
-        .ant-col {
-            height: 50%;
+        .opinion-left {
+            display: flex;
+            flex-direction: column;
+            width: 25%;
+            .opinionChart {
+                height: 40%;
+            }
+            .hotTopic {
+                flex: 1;
+            }
+        }
+        .opinion-center {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            .main-chart {
+                height: 60%;
+            }
+            .analys-table {
+                flex: 1;
+            }
+        }
+        .opinion-right {
+            flex: 1;
+            .calendar {
+                height: 100%;
+            }
         }
     }
 }

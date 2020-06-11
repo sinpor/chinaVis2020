@@ -6,8 +6,8 @@ import axios from '@/services'
 import { extent } from 'd3'
 import { formatDate } from '@/utils'
 
-const cellSize = [40, 40];
-const pieRadius = 20;
+const cellSize = [25, 25];
+const pieRadius = cellSize[0] / 2;
 
 function getPieSeries(data, chart, categorys) {
     return data.map(function (item, index) {
@@ -19,7 +19,8 @@ function getPieSeries(data, chart, categorys) {
             label: {
                 normal: {
                     formatter: '{c}',
-                    position: 'inside'
+                    position: 'inside',
+                    fontSize: 8,
                 }
             },
             radius: pieRadius,
@@ -37,20 +38,25 @@ function getPieSeries(data, chart, categorys) {
 
 const option = {
     backgroundColor: 'transparent',
+    title: {
+        show: false,
+    },
     calendar: {
+        top: 'middle',
+        left: 'center',
+        orient: 'vertical',
         cellSize,
         range: '2020/01',
         itemStyle: {
             borderColor: '#fff',
-            borderWidth: 1
+            borderWidth: 1,
+            color: 'transparent',
+
         },
         splitLine: {
             show: false
         },
         yearLabel: { show: false },
-        itemStyle: {
-            color: 'transparent',
-        },
     },
     series: [{
         id: 'label',
@@ -59,7 +65,7 @@ const option = {
         symbolSize: 1,
         label: {
             normal: {
-                show: true,
+                show: false,
                 formatter: function (params) {
                     return echarts.format.formatTime('dd', params.value[0]);
                 },
@@ -138,7 +144,6 @@ export default function Index() {
     }, [])
     return (
         <div ref={container}
-            style={{height: '500px'}}
             className="chart-container"
         />
     )

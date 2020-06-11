@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Section from '@/components/section'
 import { Table } from 'antd'
-import HeatMap from '../heatMap'
+import HeatMap from '../calendar'
 import axios from '@/services'
 
 const columns = [{
@@ -31,19 +31,12 @@ export default function Index() {
         }
     }, [])
     return (
-        <div>
-            <Section title="谣言分析">
-                {/* <Table
-                    rowKey="data"
-                    columns={columns}
-                    dataSource={tableData}
-                /> */}
-
-            </Section>
-            <Section title="每日谣言热点分布">
-                <HeatMap />
-
-            </Section>
-        </div>
+        <Section title="谣言分析">
+            <Table
+                rowKey="data"
+                columns={columns}
+                dataSource={tableData}
+            />
+        </Section>
     )
 }
