@@ -1,7 +1,7 @@
 import React from "react"
 import store from "../../store"
 import { observer } from "mobx-react"
-import { DatePicker } from "antd"
+import Section from "@/components/section"
 
 const TRANSLATE = {
 	"﻿weiboname": "用户名",
@@ -23,18 +23,17 @@ export default observer(function Index() {
 				value: "",
 		  }))
 	return (
-		<div className="content">
-			<div className="content-form">
-				<DatePicker />
-			</div>
-			{weiboContent.map((d) => (
-				<div key={d.type} className="content-item">
-					<span className="content-item-type">
-						{TRANSLATE[d.type]} :
-					</span>
-					<span className="content-item-value">{d.value}</span>
-				</div>
-			))}
-		</div>
+        <Section title="微博详情">
+            <div className="content">
+                    {weiboContent.map((d) => (
+                        <div key={d.type} className="content-item">
+                            <span className="content-item-type">
+                                {TRANSLATE[d.type]}
+                            </span>
+                            <span className="content-item-value">{d.value}</span>
+                        </div>
+                    ))}
+            </div>
+        </Section>
 	)
 })

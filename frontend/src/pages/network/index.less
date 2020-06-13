@@ -6,23 +6,40 @@
         .network-info {
             width: 30%;
             height: 100%;
-            .content {
-                display: flex;
-                flex-direction: column;
-                flex: 1;
-                height: 50%;
-                overflow: auto;
+            .network-info-header {
                 .content-form {
-                    margin: 10px 0;
+                    padding: 10px 0;
                     text-align: center;
                 }
+            }
+            .network-info-container {
+                height: calc(100% - 50px);
+            }
+            .network-info-weibo {
+                height: 50%;
+                .section-header {
+                    height: 40px;
+                }
+                .section-container {
+                    height: calc(100% - 40px);
+                }
+            }
+            .content {
+                height: 100%;
+                overflow: auto;
                 .content-item {
                     display: flex;
                     line-height: 2em;
                     .content-item-type {
-                        width: 5em;
+                        width: 4em;
                         font-weight: bold;
-                        font-size: 16px;
+                        font-size: 14px;
+                        position: relative;
+                        &::after {
+                            position: absolute;
+                            right: 5px;
+                            content: ':';
+                        }
                     }
                     .content-item-value {
                         flex: 1;

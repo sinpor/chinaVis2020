@@ -1,7 +1,8 @@
-import { observable, action } from 'mobx'
+import { observable, action, computed } from 'mobx'
 import moment from 'moment'
 import axios from '@/services'
 import _ from 'lodash'
+import { filter } from 'echarts-gl'
 
 class Store {
     @observable topic = ''
@@ -12,7 +13,9 @@ class Store {
 
     @observable originAllData = []
 
-    days = (moment('2020-1-11').valueOf() - moment('2020-1-9').valueOf()) / (3600 * 24 * 1000)
+    
+
+    days = (moment('2020-4-1').valueOf() - moment('2020-1-9').valueOf()) / (3600 * 24 * 1000)
 
     @action initData = () => {
         const promiseArr = []
@@ -31,21 +34,33 @@ class Store {
                 .values()
                 .flattenDeep()
                 .value()
-            console.log(this.originAllData);
-            
         })
     }
 
     @action updateContent = (topic) => {
+        console.log(this.originData[this.currentDateFormat]);
+        
         this.topic = topic
-        this.weiboContent = _.chain(this.originAllData)
-            .find(d => d.topic.includes(topic))
+        this.weiboContent = _.chain(this.originData[this.currentDateFormat])
+            .filter(d => d.topic.includes(topic))
+            .orderBy(d => d.thubs + d.forward + d.comment, 'desc')
+            .head()
             .map((d, k) => ({
                 type: k,
                 value: d,
             }))
             .value()
 
+    }
+
+    @observable currentDate = moment('2020/1/9')
+
+    @computed get currentDateFormat() {
+        return this.currentDate.format('YYYY-M-D')
+    }
+
+    @action updateDate = date => {
+        this.currentDate = date
     }
 }
 
