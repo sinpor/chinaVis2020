@@ -6,6 +6,7 @@ import style from "./index.less"
 import WordCloud from "./components/wordCloud"
 import { DatePicker } from "antd"
 import { observer } from "mobx-react"
+import moment from "moment"
 
 export default observer(function Index() {
 	const { updateDate, currentDate } = store
@@ -18,7 +19,18 @@ export default observer(function Index() {
 			<div className="network-info">
 				<div className="network-info-header">
 					<div className="content-form">
-						<DatePicker width="200px" onChange={updateDate} value={currentDate} />
+						<span>选择日期：</span>
+						<DatePicker
+							width="200px"
+							onChange={updateDate}
+							value={currentDate}
+							disabledDate={(currentDate) =>
+								currentDate < moment("2020/1/9") ||
+								currentDate > moment("2020/3/31")
+							}
+							showToday={false}
+							allowClear={false}
+						/>
 					</div>
 				</div>
 				<div className="network-info-container">

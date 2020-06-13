@@ -42,12 +42,7 @@ export default observer(function Index() {
 				<List
 					itemLayout="vertical"
 					size="large"
-					// pagination={{
-					// 	onChange: (page) => {
-					// 		console.log(page)
-					// 	},
-					// 	pageSize: 3,
-					// }}
+					// locale={{ emptyText: "请选择话题" }}
 					dataSource={weiboContent}
 					renderItem={(item) => (
 						<List.Item
@@ -80,7 +75,10 @@ export default observer(function Index() {
 								expandIconPosition="right"
 							>
 								<Collapse.Panel
-									header={`${item.weibotext.slice(0, 15)} ...`}
+									header={`${item.weibotext.slice(
+										0,
+										15
+									)} ...`}
 								>
 									{item.weibotext}
 								</Collapse.Panel>

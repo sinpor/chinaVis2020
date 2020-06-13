@@ -4,6 +4,7 @@ import axios from "@/services"
 import "echarts-gl"
 import store from "../../store"
 import { reaction } from "mobx"
+import Section from "@/components/section"
 
 const option_echartsnetwork = {
 	animation: true,
@@ -125,8 +126,8 @@ const option_echartsnetwork = {
 		viewControl: {
 			autoRotate: false,
 			autoRotateSpeed: 10,
-            rotateSensitivity: 1,
-            distance: 500,
+			rotateSensitivity: 1,
+			distance: 500,
 		},
 	},
 	title: [
@@ -155,7 +156,7 @@ export default function Index() {
 						},
 						series: res.series,
 					},
-                    true
+					true
 				)
 			})
 		}
@@ -179,5 +180,9 @@ export default function Index() {
 		return dispose
 	}, [])
 
-	return <div className="chart-container" ref={container} />
+	return (
+		<Section title="社交网络">
+			<div className="chart-container" ref={container} />
+		</Section>
+	)
 }

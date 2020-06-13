@@ -29,6 +29,10 @@
     .ant-picker-panel-container *{
         background-color: #0d142a;
         color: @white;
+        .ant-picker-cell-disabled::before {
+            background-color: rgba(200,200,200, .3);
+            color: #aaa;
+        }
     }
 
     .ant-list {
