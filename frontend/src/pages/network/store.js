@@ -20,7 +20,7 @@ class Store {
             ((i) => {
                 const date = moment('2020/1/9').add(i, 'days').format('YYYY-M-D')
                 promiseArr.push(
-                    axios(`weibo_processed_json/${date}.json`).then(res => {
+                    axios(`weibo_processed_json/${date}.csv`).then(res => {
                         this.originData[date] = res
                     })
                 )
