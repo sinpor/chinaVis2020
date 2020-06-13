@@ -26,9 +26,9 @@ export default function BasicLayout({children}) {
                             <span><BorderBox7><span className="menu-item">
                                 <Link to='/option' >舆情信息</Link>
                             </span></BorderBox7></span>
-                            <span><BorderBox7><span className="menu-item">
+                            {/* <span><BorderBox7><span className="menu-item">
                                 <Link to='/optionAnly' >舆情情感</Link>
-                            </span></BorderBox7></span>
+                            </span></BorderBox7></span> */}
                             <span><BorderBox7><span className="menu-item">
                                 <Link to='/network' >社交网络</Link>
                             </span></BorderBox7></span>
