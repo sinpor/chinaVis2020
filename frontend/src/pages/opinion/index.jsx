@@ -18,7 +18,7 @@ export default function Opinion() {
                 </div>
             </div>
             <div className="opinion-center">
-                <div className="main-chart">123</div>
+                <div className="main-chart"></div>
                 <div className="analys-table">
                     <Rumors />
                 </div>

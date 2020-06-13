@@ -36,6 +36,10 @@ export default function Index() {
                 rowKey="data"
                 columns={columns}
                 dataSource={tableData}
+                scroll={{
+                    y: true
+                }}
+                pagination={false}
             />
         </Section>
     )
