@@ -1,3 +1,5 @@
+@import './variable.less';
+
 :global {
     .ant-table-wrapper {
         color: inherit;
@@ -17,6 +19,42 @@
     .ant-empty-normal {
         color: inherit;
     }
+    .ant-picker {
+        background-color: rgba(0,0,0,.5);
+        color: @white;
+        .ant-picker-input * {
+            color: inherit;
+        }
+    }
+    .ant-picker-panel-container *{
+        background-color: #0d142a;
+        color: @white;
+    }
 
-    
+    .ant-list {
+        * {
+            color: @white;
+        }
+        .ant-list-item-meta-title {
+            color: inherit;
+        }
+        .ant-list-item-meta-description {
+            color: rgba(200,200,200,.8);
+        }
+    }
+    .ant-collapse {
+        background-color: transparent;
+        * {
+            color: @white;
+        }
+        .ant-collapse-header {
+            color: inherit !important;
+        }
+    }
+    .ant-picker-input:hover {
+        .ant-picker-clear {
+            background-color: transparent;
+            color: #aaa;
+        }
+    }
 }
