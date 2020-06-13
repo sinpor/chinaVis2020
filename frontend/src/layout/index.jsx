@@ -4,7 +4,8 @@ import { FullScreenContainer, BorderBox1, BorderBox7, Decoration5 } from '@jiami
 import style from './index.less'
 import Clock from '@/components/clock'
 import { Link } from 'react-router-dom'
-
+import { ConfigProvider } from 'antd';
+import zhCN from 'antd/es/locale/zh_CN';
 
 const { Header, Content } = Layout
 
@@ -36,7 +37,9 @@ export default function BasicLayout({children}) {
                     </Header>
                     <BorderBox1 className="border-padding-3 layout-border">
                         <Content className="layout-content">
-                            {children}
+                            <ConfigProvider locale={zhCN}>
+                                {children}
+                            </ConfigProvider>
                         </Content>
                     </BorderBox1>
                 </Layout>
