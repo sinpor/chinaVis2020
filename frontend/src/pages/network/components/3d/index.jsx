@@ -149,7 +149,7 @@ export default function Index() {
 					{
 						...option_echartsnetwork,
 						visualMap: {
-							...option_echartsnetwork,
+							...option_echartsnetwork.visualMap,
 							min,
 							max,
 						},
