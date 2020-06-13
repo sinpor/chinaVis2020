@@ -17,7 +17,7 @@ const columns = [
 	{
 		title: "搜索次数",
 		dataIndex: "SearchNum",
-		width: "90px",
+		width: "100px",
 	},
 ]
 export default function Index() {
@@ -82,11 +82,11 @@ export default function Index() {
 			}
 		>
 			<Table
-                className="topic-table"
+				className="topic-table"
 				rowKey="Rank"
 				columns={columns}
 				dataSource={tableData[currentDate] || []}
-				scroll={{ y: 'con' }}
+				scroll={{ y: "con" }}
 				pagination={false}
 			/>
 		</Section>
