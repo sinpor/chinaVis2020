@@ -5,6 +5,7 @@ import Rumors from './components/rumors'
 import Calendar from './components/calendar'
 import style from './index.less'
 import Section from '@/components/section'
+import BarChart from './components/barChart'
 
 export default function Opinion() {
     return (
@@ -18,7 +19,9 @@ export default function Opinion() {
                 </div>
             </div>
             <div className="opinion-center">
-                <div className="main-chart"></div>
+                <div className="main-chart">
+                    <BarChart />
+                </div>
                 <div className="analys-table">
                     <Rumors />
                 </div>
