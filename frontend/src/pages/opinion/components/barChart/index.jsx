@@ -95,7 +95,7 @@ export default function BarChart() {
 		}
 
 		function updateBar() {
-			svg.current.selectAll("g.arcG").remove()
+			svg.current.selectAll("g.arcBar").remove()
 			drawBar("positive")
 			drawBar("negative")
 		}
@@ -154,6 +154,7 @@ export default function BarChart() {
 
 			const arcG = svg.current
 				.append("g")
+				.classed('arcBar', true)
 				.selectAll("g.arcG")
 				.data(arcsData)
 				.enter()
