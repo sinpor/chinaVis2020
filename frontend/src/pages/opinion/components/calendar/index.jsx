@@ -13,6 +13,7 @@ function getPieSeries(data, chart) {
 	const series = data.map(function (item, index) {
 		const center = chart.convertToPixel({ seriesId: "label" }, item.date)
 		return {
+            name: item.date,
 			id: index + "pie",
 			type: "pie",
 			center,
@@ -30,6 +31,7 @@ function getPieSeries(data, chart) {
 					value: d,
 				})),
 			],
+			tooltip: { show: true },
 		}
 	})
 	return series
@@ -39,7 +41,8 @@ const option = {
 	backgroundColor: "transparent",
 	title: {
 		show: false,
-	},
+    },
+    tooltip: {},
 	calendar: {
 		top: 25,
 		left: "30",
@@ -84,8 +87,8 @@ const option = {
 						fontSize: 14,
 					},
 				},
-            },
-            z: 0,
+			},
+			z: 0,
 		},
 	],
 }
@@ -125,7 +128,7 @@ export default function Index() {
 					moment(d).format("YYYY-MM-DD")
 				)
 
-                const scatterData = data.map((d) => [d.date, 1])
+				const scatterData = data.map((d) => [d.date, 1])
 
 				chart.current.setOption({
 					calendar: {
