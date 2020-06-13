@@ -6,11 +6,26 @@
         .ant-table {
             color: inherit;
             background-color: transparent;
-            div, tr, th, td {
-                border: none;
-                background-color: inherit;
+            
+            .ant-table-thead {
+                th {
+                    color: #aaa;
+                    background-color: rgba(200, 200, 200, .2);
+                }
+            }
+            .ant-table-cell {
                 &:hover {
-                    background-color: inherit !important;
+                    background-color: #212c50 !important;
+                }
+            }
+            tr {
+                &.ant-table-row {
+                    &:hover {
+                        background-color: #212c50 !important;
+                        &>td {
+                            background-color: #212c50 !important;
+                        }
+                    }
                 }
             }
         }
