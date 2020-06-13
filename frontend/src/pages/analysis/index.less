@@ -3,7 +3,17 @@
     background-color: transparent;
     :global {
         .ant-col {
-            height: 50%;
+            height: 100%;
+            &.analysis-left {
+                display: flex;
+                flex-direction: column;
+                .chart-map {
+                    height: 50%;
+                }
+                .chart-line {
+                    flex: 1;
+                }
+            }
         }
     }
 }

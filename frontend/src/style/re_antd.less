@@ -61,4 +61,22 @@
             color: #aaa;
         }
     }
+
+    .ant-select-selector {
+        background-color: #0d142a !important;
+        color: @white !important;
+    }
+    .ant-select-dropdown {
+        background-color: #0d142a !important;
+        color: @white !important;
+        .ant-select-item {
+            color: inherit;
+            &.ant-select-item-option-selected:not(.ant-select-item-option-disabled) {
+                background-color: #212c50;
+            }
+            &.ant-select-item-option-active {
+                background-color: #212c50;
+            }
+        }
+    }
 }

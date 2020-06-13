@@ -1,9 +1,11 @@
 @import '../../../../style/variable.less';
 
 .map {
+    height: 100%;
     :global {
         position:relative;
         .switch-btn{
+            height: 30px;
             display: flex;
             span{
                 display: inline-block;
@@ -17,12 +19,8 @@
                 }
             }
         }
-        .dateSelect{
-            position: absolute;
-            right: 25px;
-            top: 0;
-            z-index: 99;
-
+        .chart-container {
+            height: calc(100% - 30px);
         }
     }
 }
