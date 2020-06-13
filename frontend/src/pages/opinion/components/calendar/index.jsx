@@ -1,150 +1,156 @@
-import React, { useRef, useEffect } from 'react'
-import echarts from 'echarts'
-import moment from 'moment'
-import _ from 'lodash'
-import axios from '@/services'
-import { extent } from 'd3'
-import { formatDate } from '@/utils'
+import React, { useRef, useEffect } from "react"
+import echarts from "echarts"
+import moment from "moment"
+import _ from "lodash"
+import axios from "@/services"
+import { extent } from "d3"
+import { formatDate } from "@/utils"
 
-const cellSize = [25, 25];
-const pieRadius = cellSize[0] / 2;
+const cellSize = [30, 30]
+const pieRadius = cellSize[0] / 2
 
-function getPieSeries(data, chart, categorys) {
-    return data.map(function (item, index) {
-        const center = chart.convertToPixel('calendar', [item.date, 1]);
-        return {
-            id: index + 'pie',
-            type: 'pie',
-            center,
-            label: {
-                normal: {
-                    formatter: '{c}',
-                    position: 'inside',
-                    fontSize: 8,
-                }
-            },
-            radius: pieRadius,
-            data: [..._.map(item.data, (d, k) => ({
-                name: k,
-                value: d,
-            })),
-            ...categorys.map(d => ({
-                name: d,
-                value: 0,
-            }))]
-        };
-    });
+function getPieSeries(data, chart) {
+	const series = data.map(function (item, index) {
+		const center = chart.convertToPixel({ seriesId: "label" }, item.date)
+		return {
+			id: index + "pie",
+			type: "pie",
+			center,
+			label: {
+				normal: {
+					formatter: "{c}",
+					position: "inside",
+					fontSize: 8,
+				},
+			},
+			radius: pieRadius,
+			data: [
+				..._.map(item.data, (d, k) => ({
+					name: k,
+					value: d,
+				})),
+			],
+		}
+	})
+	return series
 }
 
 const option = {
-    backgroundColor: 'transparent',
-    title: {
-        show: false,
-    },
-    calendar: {
-        bottom: 5,
-        left: 'center',
-        orient: 'vertical',
-        cellSize,
-        range: '2020/01',
-        itemStyle: {
-            borderColor: '#fff',
-            borderWidth: 1,
-            color: 'transparent',
-
-        },
-        splitLine: {
-            show: false
-        },
-        yearLabel: { show: false },
-    },
-    series: [{
-        id: 'label',
-        type: 'scatter',
-        coordinateSystem: 'calendar',
-        symbolSize: 1,
-        label: {
-            normal: {
-                show: false,
-                formatter: function (params) {
-                    return echarts.format.formatTime('dd', params.value[0]);
-                },
-                offset: [-cellSize[0] / 2 + 10, -cellSize[1] / 2 + 10],
-                textStyle: {
-                    color: '#000',
-                    fontSize: 14
-                }
-            }
-        },
-    }]
+	backgroundColor: "transparent",
+	title: {
+		show: false,
+	},
+	calendar: {
+		top: 25,
+		left: "30",
+		right: "5%",
+		orient: "vertical",
+		cellSize,
+		range: "2020/01",
+		itemStyle: {
+			borderColor: "#fff",
+			borderWidth: 1,
+			color: "transparent",
+		},
+		splitLine: {
+			show: false,
+		},
+		yearLabel: { show: false },
+		dayLabel: {
+			nameMap: "cn",
+			color: "#aaa",
+			position: "end",
+		},
+		monthLabel: {
+			nameMap: "cn",
+			color: "#aaa",
+		},
+	},
+	series: [
+		{
+			id: "label",
+			type: "scatter",
+			coordinateSystem: "calendar",
+			symbolSize: 1,
+			label: {
+				normal: {
+					show: false,
+					formatter: function (params) {
+						return echarts.format.formatTime("dd", params.value[0])
+					},
+					offset: [-cellSize[0] / 2 + 10, -cellSize[1] / 2 + 10],
+					textStyle: {
+						color: "#000",
+						fontSize: 14,
+					},
+				},
+            },
+            z: 0,
+		},
+	],
 }
 
 export default function Index() {
-    const chart = useRef()
-    const container  = useRef(null)
+	const chart = useRef()
+	const container = useRef(null)
 
-    useEffect(() => {
-        function initData() {
-            axios('谣言.json').then(res => {
-                const data = _.chain(res)
-                    .reduce((obj, d) => {
-                        const key = d.data
-                        if (!obj[key]) {
-                            obj[key] = {
-                                timeStamp: moment(key).valueOf(),
-                                date: key,
-                                data: [],
-                            }
-                        }
-                        obj[key].data.push(d.category)
-                        return obj
-                    }, {})
-                    .values()
-                    .orderBy('timeStamp')
-                    .map(d => ({
-                        timeStamp: d.timeStamp,
-                        date: formatDate(d.date),
-                        data: _.countBy(d.data)
-                    }))
-                    .value()
+	useEffect(() => {
+		function initData() {
+			axios("谣言.json").then((res) => {
+				const data = _.chain(res)
+					.reduce((obj, d) => {
+						const key = d.data
+						if (!obj[key]) {
+							obj[key] = {
+								timeStamp: moment(key).valueOf(),
+								date: key,
+								data: [],
+							}
+						}
+						obj[key].data.push(d.category)
+						return obj
+					}, {})
+					.values()
+					.orderBy("timeStamp")
+					.map((d) => ({
+						timeStamp: d.timeStamp,
+						date: formatDate(d.date),
+						data: _.countBy(d.data),
+					}))
+					.value()
 
-                const categorys = _.chain(res)
-                    .map('category')
-                    .uniq()
-                    .value()
-                
-                const dateRagnge = extent(data, d => d.timeStamp)
-                    .map(d => moment(d).format('YYYY-MM-DD'))
+				const categorys = _.chain(res).map("category").uniq().value()
 
-                const scatterData = data.map(d => [d.date, 1])
+				const dateRagnge = extent(data, (d) => d.timeStamp).map((d) =>
+					moment(d).format("YYYY-MM-DD")
+				)
 
-                chart.current.setOption({
-                    calendar: {
-                        range: dateRagnge,
-                    },
-                    legend: {
-                        data: categorys,
-                    },
-                    series: [{
-                        id: 'label',
-                        data: scatterData,
-                    },
-                    ...getPieSeries(data, chart.current, categorys),
-                    ]
-                })
-                console.log(getPieSeries(data, chart.current, categorys));
-                
-            })
-        }
+                const scatterData = data.map((d) => [d.date, 1])
 
-        chart.current = echarts.init(container.current, 'dark')
-        chart.current.setOption(option)
+				chart.current.setOption({
+					calendar: {
+						range: dateRagnge,
+					},
+				})
 
-        initData()
-    }, [])
-    return (
-        <div ref={container}
-            className="chart-container"
-        />
-    )
+				chart.current.setOption({
+					legend: {
+						data: categorys,
+					},
+					series: [
+						{
+							id: "label",
+							data: scatterData,
+						},
+						...getPieSeries(data, chart.current, categorys),
+					],
+				})
+			})
+		}
+
+		chart.current = echarts.init(container.current, "dark")
+		chart.current.setOption(option)
+		initData()
+	}, [])
+	return <div ref={container} className="chart-container" />
 }
