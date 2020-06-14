@@ -58,16 +58,15 @@ export default function Radar() {
 						focusNodeAdjacency: "allEdges",
 						data: DateName,
 						links: currentData,
+						label: {
+							fontSize: 14,
+							color: "#fff",
+						},
 					},
 					tooltip: {
 						trigger: "item",
 					},
-					label: {
-						normal: {
-							fontSize: "14",
-							color: "#fff",
-						},
-					},
+					
 				} //图标数据
 
 				chart.current = echarts.init(container.current)
