@@ -51,7 +51,7 @@ export default function Index() {
 
 				setTableData(data)
 				setOptions(dates)
-				setCurrentDate(dates[0])
+				setCurrentDate(moment('2020/1/21').format("YYYY-MM-DD"))
 			})
 		}
 
