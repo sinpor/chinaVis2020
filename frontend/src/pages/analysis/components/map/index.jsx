@@ -1,40 +1,6 @@
 import React, { useRef, useEffect, useState } from "react"
 import echarts from "echarts"
 import "echarts/map/js/china"
-import "echarts/map/js/province/anhui"
-import "echarts/map/js/province/aomen"
-import "echarts/map/js/province/beijing"
-import "echarts/map/js/province/chongqing"
-import "echarts/map/js/province/fujian"
-import "echarts/map/js/province/gansu"
-import "echarts/map/js/province/guangdong"
-import "echarts/map/js/province/guangxi"
-import "echarts/map/js/province/guizhou"
-import "echarts/map/js/province/hainan"
-import "echarts/map/js/province/hebei"
-import "echarts/map/js/province/heilongjiang"
-import "echarts/map/js/province/hainan"
-import "echarts/map/js/province/hubei"
-import "echarts/map/js/province/hunan"
-import "echarts/map/js/province/jiangsu"
-import "echarts/map/js/province/jiangxi"
-import "echarts/map/js/province/jilin"
-import "echarts/map/js/province/liaoning"
-import "echarts/map/js/province/neimenggu"
-import "echarts/map/js/province/ningxia"
-import "echarts/map/js/province/qinghai"
-import "echarts/map/js/province/shandong"
-import "echarts/map/js/province/shanghai"
-import "echarts/map/js/province/shanxi"
-import "echarts/map/js/province/shanxi1"
-import "echarts/map/js/province/sichuan"
-import "echarts/map/js/province/taiwan"
-import "echarts/map/js/province/tianjin"
-import "echarts/map/js/province/xianggang"
-import "echarts/map/js/province/xinjiang"
-import "echarts/map/js/province/xizang"
-import "echarts/map/js/province/yunnan"
-import "echarts/map/js/province/zhejiang"
 
 import { BorderBox7 } from "@jiaminghi/data-view-react"
 import style from "./index.less"
@@ -42,6 +8,7 @@ import { DatePicker } from "antd"
 import moment from "moment"
 import axios from "@/services"
 import Section from "@/components/section"
+import Modal from "./modal"
 
 const compare = (property) => {
 	return (a, b) => {
@@ -52,7 +19,7 @@ const compare = (property) => {
 export default function Radar() {
 	const [currentLevel, setCurrentLevel] = useState("province") //当前层级
 
-	const [currentDate, setCurrentDate] = useState("2020-02-28") //当前日期
+	const [currentDate, setCurrentDate] = useState("2020-01-30") //当前日期
 	function onDateChange(date, dateString) {
 		setCurrentDate(dateString)
 	}
@@ -64,6 +31,8 @@ export default function Radar() {
 
 	const [currentMap, setCurrentMap] = useState("china") //当前地图
 
+	const [visible, setVisible] = useState(false)
+
 	const container = useRef(null)
 	const chart = useRef(null)
 	useEffect(() => {
@@ -71,10 +40,10 @@ export default function Radar() {
 			currentLevel === "province"
 				? `ProvinceDataDaily.json`
 				: "CityDataDaily.json"
-		axios(title).then(
+		axios("ProvinceDataDaily.json").then(
 			(res) => {
 				let data = [] //热力图数据
-				if (currentLevel === "province") {
+				if (true) {
 					res.map((item) => {
 						if (item.updateTime === currentDate) {
 							let obj = {}
@@ -157,23 +126,34 @@ export default function Radar() {
 							},
 						},
 						visualMap: {
-							type: "continuous",
-							orient: "horizontal",
-							itemWidth: 10,
-							itemHeight: 80,
-							text: ["高", "低"],
+							type: "piecewise",
+							// orient: "horizontal",
+							// itemWidth: 10,
+							// itemHeight: 80,
+							// text: ["高", "低"],
 							showLabel: true,
-							seriesIndex: [0],
-							min: 0,
-							max: barData[0].value,
+							seriesIndex: 0,
+							// min: 0,
+							// max: barData[0].value,
+							pieces: [
+								{ gt: 100 }, // (1500, Infinity]
+								{ gt: 50, lte: 100 }, // (900, 1500]
+								{ gt: 31, lte: 50 }, // (900, 1500]
+								{ gt: 20, lte: 30 }, // (310, 1000]
+								{ gt: 10, lte: 20 }, // (200, 300]
+								{ gte: 1, lte: 10 }, // (10, 200]
+								{ lte: 0 },
+							],
 							inRange: {
 								color: ["#6FCF6A", "#FFFD64", "#FF5000"],
 							},
 							textStyle: {
 								color: "#7B93A7",
 							},
-							bottom: 30,
-							left: "left",
+							align: "right",
+							bottom: 5,
+							// left: "right"
+							left: "45%",
 						},
 						grid: {
 							right: 10,
@@ -252,7 +232,7 @@ export default function Radar() {
 						},
 						geo: {
 							// roam: true,
-							map: currentMap,
+							map: "china",
 							left: "left",
 							right: "300",
 							// layoutSize: '80%',
@@ -340,12 +320,13 @@ export default function Radar() {
 					if (currentLevel === "province") {
 						setCurrentMap(e.name)
 						setCurrentLevel("city")
+						setVisible(true)
 					}
 				})
 
 				return () => {}
 			},
-			[currentBtn, currentDate, setCurrentMap]
+			[currentBtn, currentDate]
 		)
 	})
 
@@ -365,7 +346,7 @@ export default function Radar() {
 		<Section
 			title="疫情地图"
 			extra={
-				<div style={{textAlign: 'right'}}>
+				<div style={{ textAlign: "right" }}>
 					<DatePicker
 						defaultValue={moment(currentDate, "YYYY-MM-DD")}
 						format={"YYYY-MM-DD"}
@@ -424,6 +405,13 @@ export default function Radar() {
 
 				<div className="chart-container" ref={container} />
 			</div>
+			<Modal
+				visible={visible}
+				setVisible={setVisible}
+				provice={currentMap}
+				currentDate={currentDate}
+				type={currentBtn}
+			/>
 		</Section>
 	)
 }
