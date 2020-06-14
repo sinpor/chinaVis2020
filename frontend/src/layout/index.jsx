@@ -31,7 +31,7 @@ export default function BasicLayout({children}) {
                                 <Link to='/optionAnly' >舆情情感</Link>
                             </span></BorderBox7></span> */}
                             <span><BorderBox7><span className="menu-item">
-                                <Link to='/network' >社交网络</Link>
+                                <Link to='/network' >情感分布</Link>
                             </span></BorderBox7></span>
                         </div>
                     </Header>

@@ -181,7 +181,7 @@ export default function Index() {
 	}, [])
 
 	return (
-		<Section title="社交网络">
+		<Section title="舆情分布">
 			<div className="chart-container" ref={container} />
 		</Section>
 	)
