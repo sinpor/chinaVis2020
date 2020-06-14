@@ -6,16 +6,13 @@
         .network-info {
             width: 30%;
             height: 100%;
-            .network-info-header {
-                .content-form {
-                    padding: 10px;
-                }
-            }
             .network-info-container {
-                height: calc(100% - 50px);
+                height: 100%;
+                padding-right: 10px;
             }
             .network-info-weibo {
                 height: 50%;
+                padding-bottom: 10px;
                 .section-header {
                     height: 40px;
                 }
@@ -45,6 +42,16 @@
                         word-break: break-all;
                     }
                 }
+                .ant-empty {
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    .ant-empty-description {
+                        font-size: 18px;
+                    }
+                }
             }
             .wordCloud {
                 height: 50%;
@@ -54,6 +61,8 @@
             flex: 1;
             height: 100%;
         }
-        
+        .content-form {
+            text-align: right;
+        }
     }
 }
