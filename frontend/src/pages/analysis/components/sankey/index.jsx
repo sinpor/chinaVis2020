@@ -47,6 +47,7 @@ export default function Radar() {
 
 				const option = {
                     title: {
+						show: false,
                         text: `迁移图`,
                         textStyle: {
                             color: "#fff",

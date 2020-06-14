@@ -61,6 +61,7 @@ export default function Radar() {
 			}
 			const option = {
 				title: {
+					show: false,
 					text: "迁入规模与确诊对比图",
 					textStyle: {
 						color: "#fff",
