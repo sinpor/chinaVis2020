@@ -59,7 +59,7 @@ export default function BasicLayout({ children }) {
 						<span>
 							<BorderBox7>
 								<span className={`menu-item ${setActive('/network')}`}>
-									<Link to="/network">情感分布</Link>
+									<Link to="/network">舆情分布</Link>
 								</span>
 							</BorderBox7>
 						</span>
