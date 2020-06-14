@@ -72,7 +72,7 @@ export default function WordCloud() {
 		return dispose
 	}, [])
 	return (
-		<Section title="谣言词云">
+		<Section title="微博词云">
 			<div className="chart-container" ref={container} />
 		</Section>
 	)
