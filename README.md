@@ -1,4 +1,4 @@
-### chinaVis 2020 挑战赛
+### chinaVis 2020 挑战赛（三等奖）
 
 - 仓库地址：[https://github.com/sinpor/chinaVis2020.git](https://github.com/sinpor/chinaVis2020.git)
 
